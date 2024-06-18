@@ -6,20 +6,21 @@ import { Contact, ContactService, FakeContactServiceImpl } from "./service";
 import { HeaderStore } from "../header/store";
 import { runInAction } from "mobx";
 
+class FakeService implements ContactService {
+  async addContact(contact: Contact) {
+    return contact;
+  }
+
+  async getContacts() {
+    return [];
+  }
+}
+
 describe("Contact presenter", () => {
   it("should have correct status", async () => {
     const headerStore = new HeaderStore();
 
     const store = new ContactStore();
-    class FakeService implements ContactService {
-      async addContact(contact: Contact) {
-        return contact;
-      }
-
-      async getContacts() {
-        return [];
-      }
-    }
 
     const service = new FakeService();
     const presenter = new ContactPresenter(store, service, headerStore);

@@ -13,13 +13,10 @@ export class AddContactPresenter {
 
   @action
   async addContact(contact: Contact) {
-    console.log(contact);
     try {
       await this.contactService.addContact(contact);
 
       const contacts = await this.contactService.getContacts();
-
-      console.log(contacts);
 
       runInAction(() => {
         this.contactStore.contacts = contacts;
