@@ -1,50 +1,26 @@
-# Welcome to your Expo app 👋
+# UI as an Afterthought
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+"UI as an Afterthought" emphasizes the importance of decoupling business processes from the user interface (UI) in web applications. This project showcases best practices for designing and testing web applications by prioritizing the modeling of business processes before focusing on the UI.
 
-1. Install dependencies
+## What
 
-   ```bash
-   npm install
-   ```
+- **Core Concept:** A web application is a user interface that enables customer interactions with business processes.
+- **Approach:** Start by modeling business processes and state management independently of the UI.
 
-2. Start the app
+## Why
 
-   ```bash
-    npx expo start
-   ```
+- **Business Focus:** State and information management are crucial for generating revenue and should not be an afterthought.
+- **Testing and Flexibility:** Decoupling state from the UI simplifies testing and allows for rapid UI iteration and flexibility in switching UI libraries or paradigms.
+- **Reduced Complexity:** By managing business processes separately, the UI remains simpler and more maintainable.
 
-In the output, you'll find options to open the app in a
+## Practical Advice
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Model and test business processes independently of the UI.
+- Use UI libraries to capture user input and present data, not to manage business state.
+- Maintain a clear separation between domain state and UI state.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Conclusion
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Prioritizing business processes and state management before UI development leads to more robust, flexible, and maintainable web applications.
