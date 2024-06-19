@@ -19,9 +19,9 @@ export const ContactList = observer(
             <Text style={styles.alphabet}>{alphabet}</Text>
           </View>
         );
-      }
 
-      alphabets.add(alphabet);
+        alphabets.add(alphabet);
+      }
 
       elements.push(<Contact contact={contact} key={contact.name} />);
     }
