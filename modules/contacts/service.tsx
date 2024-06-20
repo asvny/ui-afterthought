@@ -5,7 +5,7 @@ export interface Contact {
 }
 
 export interface ContactService {
-  getContacts: () => Promise<Array<Contact>>;
+  getContacts: (searchText?: string) => Promise<Array<Contact>>;
   addContact: (contact: Contact) => Promise<Contact>;
 }
 
@@ -83,10 +83,19 @@ export class FakeContactServiceImpl implements ContactService {
     },
   ];
 
-  async getContacts() {
+  async getContacts(searchText?: string) {
     await sleep(2000);
 
-    return this.contacts;
+    if (!searchText)
+      return this.contacts.toSorted((a, b) => a.name.localeCompare(b.name));
+
+    return this.contacts
+      .filter((contact) =>
+        contact.name
+          .toLocaleLowerCase()
+          .includes(searchText.toLocaleLowerCase())
+      )
+      .toSorted((a, b) => a.name.localeCompare(b.name));
   }
 
   async addContact(contact: Contact) {

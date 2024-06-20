@@ -3,7 +3,9 @@ import { makeAutoObservable } from "mobx";
 export class HeaderStore {
   searchText: string = "";
 
-  constructor() {
+  constructor(searchText?: string) {
     makeAutoObservable(this);
+
+    this.searchText = searchText ?? "";
   }
 }

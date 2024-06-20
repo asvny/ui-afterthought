@@ -2,12 +2,13 @@ import * as React from "react";
 import { View, TextInput, StyleSheet, Text } from "react-native";
 
 interface HeaderProps {
+  value: string;
   onChange: (text: string) => void;
   Action: React.ElementType;
 }
 
 export function Header(props: HeaderProps) {
-  const { onChange, Action } = props;
+  const { value, onChange, Action } = props;
 
   const [isFocused, setIsFocused] = React.useState(false);
 
@@ -29,6 +30,7 @@ export function Header(props: HeaderProps) {
       <TextInput
         style={[styles.textInput, isFocused && styles.textInputFocus]}
         placeholder="Search contact..."
+        value={value}
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
         onChange={(event) => {

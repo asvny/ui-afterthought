@@ -7,6 +7,7 @@ export class ContactPresenter {
   store: ContactStore;
   service: ContactService;
   headerStore: HeaderStore;
+  id?: NodeJS.Timeout;
 
   constructor(
     store: ContactStore,
@@ -16,21 +17,7 @@ export class ContactPresenter {
     this.store = store;
     this.service = service;
     this.headerStore = headerStore;
-  }
-
-  @computed
-  get filteredContacts() {
-    if (this.headerStore.searchText.trim().length > 0) {
-      return this.store.contacts
-        .filter((contact) =>
-          contact.name
-            .toLocaleLowerCase()
-            .includes(this.headerStore.searchText.toLocaleLowerCase())
-        )
-        .toSorted((a, b) => a.name.localeCompare(b.name));
-    }
-
-    return this.store.contacts.toSorted((a, b) => a.name.localeCompare(b.name));
+    this.id = undefined;
   }
 
   @action
@@ -40,7 +27,9 @@ export class ContactPresenter {
         this.store.status = "loading";
       });
 
-      let contacts = await this.service.getContacts();
+      let contacts = await this.service.getContacts(
+        this.headerStore.searchText
+      );
 
       runInAction(() => {
         this.store.contacts = contacts;
@@ -51,5 +40,13 @@ export class ContactPresenter {
         this.store.status = "error";
       });
     }
+  }
+
+  @action refetchContacts() {
+    clearTimeout(this.id);
+
+    this.id = setTimeout(() => {
+      this.fetchContacts();
+    }, 500);
   }
 }

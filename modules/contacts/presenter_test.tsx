@@ -74,39 +74,11 @@ describe("Contact presenter", () => {
 
   it("should return filtered contacts correctly", async () => {
     const headerStore = new HeaderStore();
-
     const store = new ContactStore();
-    class FakeService implements ContactService {
-      async addContact(contact: Contact) {
-        return contact;
-      }
-
-      async getContacts() {
-        return [
-          {
-            name: "React 16",
-            phoneNumber: "542324",
-          },
-          {
-            name: "React 19 - Spicy suspense",
-            phoneNumber: "542324",
-          },
-          {
-            name: "Vue",
-            phoneNumber: "643424",
-          },
-          {
-            name: "Svelte",
-            phoneNumber: "8451241",
-          },
-        ];
-      }
-    }
-
-    const service = new FakeService();
+    const service = new FakeContactServiceImpl();
 
     runInAction(() => {
-      headerStore.searchText = "react";
+      headerStore.searchText = "ann";
     });
 
     const presenter = new ContactPresenter(store, service, headerStore);
@@ -115,6 +87,7 @@ describe("Contact presenter", () => {
 
     await presenter.fetchContacts();
 
-    assert.strictEqual(presenter.filteredContacts.length, 2);
+    // Ann Benson and Shannon Cronin
+    assert.strictEqual(store.contacts.length, 2);
   });
 });
